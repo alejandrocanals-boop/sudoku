@@ -1,10 +1,10 @@
 # PWA configuration and verification
 
-Roadmap item 10, 2026-11-14. Local implementation only; nothing has been deployed. The existing `vite-plugin-pwa@2.0.0`/Workbox dependencies and npm lockfile are unchanged.
+Roadmap items 10/11, 2026-11-14. Published on GitHub Pages; see RELEASE.md for public verification and pending physical device checks. The existing `vite-plugin-pwa@2.0.0`/Workbox dependencies and npm lockfile are unchanged.
 
 ## Paths and manifest
 
-The default base is `/SUDOKU/`, matching the workspace project name. No Git remote is configured, so the eventual Pages repository slug must be confirmed during item 11. Set `VITE_BASE_PATH` to the actual project path, with leading/trailing slashes, or `/` for a root site. Use the same environment for build and preview; do not override only Vite's CLI `--base`, since the manifest/registration must agree too.
+The default and Pages CI base is `/sudoku/`, matching the public repository slug. Set `VITE_BASE_PATH` to the actual project path, with leading/trailing slashes, or `/` for a root site. Use the same environment for build and preview; do not override only Vite's CLI `--base`, since the manifest/registration must agree too.
 
 PowerShell example:
 
@@ -14,7 +14,7 @@ npm.cmd run check
 npm.cmd run preview -- --host 127.0.0.1
 ```
 
-Without that override, preview is `http://127.0.0.1:4173/SUDOKU/`; development uses port 5173 and keeps SW registration disabled. The configuration rejects unnormalized, relative or host-like bases. Manifest ID, scope, start URL, icon paths, navigation fallback and registration all use the same base. The manifest declares SUDOKU, Spanish, standalone display, portrait orientation and the approved light theme/background. HTML includes safe-area viewport configuration, Apple standalone/title metadata, the Apple touch icon and local SVG favicon. Both `/SUDOKU/` and `/` build artifact paths were verified.
+Without that override, preview is `http://127.0.0.1:4173/sudoku/`; development uses port 5173 and keeps SW registration disabled. The configuration rejects unnormalized, relative or host-like bases. Manifest ID, scope, start URL, icon paths, navigation fallback and registration all use the same base. The manifest declares SUDOKU, Spanish, standalone display, portrait orientation and the approved light theme/background. HTML includes safe-area viewport configuration, Apple standalone/title metadata, the Apple touch icon and local SVG favicon. Both `/sudoku/` and `/` build artifact paths were verified.
 
 ## Approved icons
 
@@ -38,11 +38,11 @@ The app requests `navigator.storage.persist()` once per page session after an ex
 
 ## Verification
 
-- `npm run check`: lint, all **257 tests**, TypeScript, production build and `scripts/check-pwa-build.mjs`. The artifact check verifies icon dimensions, scoped manifest/HTML/cache paths, precaching of the generator and required assets, and the generated SW/runtime source-map inventory.
-- Twenty new tests cover registration subscription cleanup, explicit/one-time reload authorization, active-state gating, external activation, navigation during activation, both save barriers, update errors, persistent-storage denial/absence and valid/invalid deployment paths.
-- `node scripts/check-pwa.mjs`: creates two temporary production builds and serves them under `/SUDOKU/` on an isolated local origin. It installs the actual SW, saves a game, closes the tab and stops the HTTP server. A new tab then cold-launches a never-visited query URL with HTTP cache disabled and networking emulated offline. It restores and undoes saved input, fetches offline icons/manifest, generates a different puzzle via the cached worker, and completes a game without the server. Build B subsequently installs as waiting while another game is active. No reload occurs until the game is finished and ACTUALIZAR is explicitly chosen from Inicio; the saved document remains byte-for-byte unchanged by that reload.
-- `node scripts/check-ui.mjs http://127.0.0.1:4173/SUDOKU/`: full play, statistics, storage, backup and responsive UI checks on production preview. It clears storage, SW registrations and caches for its local test origin, so run only in a separate test profile. Run browser scripts sequentially: backgrounding one test tab correctly pauses/block-resumes the other.
-- `scripts/check-pwa-build.mjs node_modules/.tmp/pwa-root-build` also passed for a separately built `VITE_BASE_PATH=/` variant. No deployment was performed.
+- `npm run check`: lint, all **258 tests**, TypeScript, production build and `scripts/check-pwa-build.mjs`. The artifact check verifies icon dimensions, scoped manifest/HTML/cache paths, precaching of the generator and required assets, and the generated SW/runtime source-map inventory.
+- Twenty-one PWA tests cover registration subscription cleanup, explicit/one-time reload authorization, active-state gating, external activation, navigation during activation, both save barriers, update errors, persistent-storage denial/absence and valid/invalid deployment paths.
+- `node scripts/check-pwa.mjs`: creates two temporary production builds and serves them under `/sudoku/` on an isolated local origin. It installs the actual SW, saves a game, closes the tab and stops the HTTP server. A new tab then cold-launches a never-visited query URL with HTTP cache disabled and networking emulated offline. It restores and undoes saved input, fetches offline icons/manifest, generates a different puzzle via the cached worker, and completes a game without the server. Build B subsequently installs as waiting while another game is active. No reload occurs until the game is finished and ACTUALIZAR is explicitly chosen from Inicio; the saved document remains byte-for-byte unchanged by that reload.
+- `node scripts/check-ui.mjs http://127.0.0.1:4173/sudoku/`: full play, statistics, storage, backup and responsive UI checks on production preview. It clears storage, SW registrations and caches for its local test origin, so run only in a separate test profile. Run browser scripts sequentially: backgrounding one test tab correctly pauses/block-resumes the other.
+- `scripts/check-pwa-build.mjs node_modules/.tmp/pwa-root-build` also passed for a separately built `VITE_BASE_PATH=/` variant. Public deployment and cold-offline verification also passed; see RELEASE.md.
 
 PWA/browser scripts use only installed Chrome, Node and existing Vite dependencies. Temporary build paths are verified before cleanup. Receipts/screenshots are under ignored `node_modules/.tmp/`. Safari Add to Home Screen, actual iPhone installation, physical airplane-mode cold launch and post-deployment reopen/backup remain item 11's device acceptance checks.
 

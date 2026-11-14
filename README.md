@@ -2,6 +2,8 @@
 
 A Spanish, browser-local Sudoku PWA built with React, TypeScript and Vite. Four logical difficulty levels, unique symmetric puzzles generated on request, undo, active-play timing, local saves, validated backups, statistics and offline play.
 
+Play: https://alejandrocanals-boop.github.io/sudoku/
+
 ## Development
 
 Use Node 26 and the npm lockfile:
@@ -21,3 +23,4 @@ The Pages workflow builds `main`, checks the app, creates a static artifact with
 Progress and backups stay in the browser; there is no account, backend, analytics or external runtime service. Export a backup before clearing browser storage. Physical iPhone/Safari install and airplane-mode tests remain a manual release check.
 
 See PWA.md, PERSISTENCE.md and STATISTICS.md for behavior and verification details.
+See RELEASE.md for public deployment verification and pending physical iPhone checks.

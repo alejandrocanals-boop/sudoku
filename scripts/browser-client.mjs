@@ -8,9 +8,12 @@ export async function openBrowserPage(debug = 'http://127.0.0.1:9222') {
   let id = 0
   const pending = new Map()
   const exceptions = []
+  const responses = []
   socket.addEventListener('message', event => {
     const message = JSON.parse(event.data)
     if (message.method === 'Runtime.exceptionThrown') exceptions.push(message.params.exceptionDetails)
+    if (message.method === 'Network.responseReceived') responses.push({ url: message.params.response.url,
+      type: message.params.type, fromServiceWorker: message.params.response.fromServiceWorker === true })
     if (!message.id) return
     const call = pending.get(message.id)
     pending.delete(message.id)
@@ -37,7 +40,7 @@ export async function openBrowserPage(debug = 'http://127.0.0.1:9222') {
   await command('Page.enable')
   await command('Page.bringToFront')
   await command('Runtime.enable')
-  return { command, evaluate, wait, exceptions,
+  return { command, evaluate, wait, exceptions, responses,
     close: async () => { await fetch(`${debug}/json/close/${target.id}`); socket.close() },
   }
 }
