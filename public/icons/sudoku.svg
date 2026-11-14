@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <rect width="1000" height="1000" fill="#F3F6FB"/>
+  <path d="M200 200H800V800H200ZM400 200V800M600 200V800M200 400H800M200 600H800" fill="none" stroke="#34557F" stroke-width="4"/>
+  <g fill="#34557F" font-family="Arial, sans-serif" font-size="160" text-anchor="middle" dominant-baseline="central">
+    <text x="300" y="300">5</text><text x="700" y="300">3</text>
+    <text x="500" y="500">2</text><text x="700" y="700">9</text>
+  </g>
+</svg>

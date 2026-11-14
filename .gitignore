@@ -1,0 +1,37 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+coverage
+.vite
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Local agent instructions, machine-specific evidence and deployment output
+/.agents/
+/.codex/
+/AGENTS.md
+/GENERATION_BENCHMARK.json
+/dist-pages/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
