@@ -8,7 +8,13 @@
 ## Home
 Centered SUDOKU (no period), Georgia up to 64px. Centered decorative 3×3 grid up to 212px, thin blue lines, digits 38px, top row 5 · 3, middle · 2 ·, bottom · · 9 (dots mean blanks). Spacious layout. CONTINUAR (filled blue/white) if active; NUEVA PARTIDA (outlined if active, otherwise filled); ESTADÍSTICAS and AJUSTES plain blue. Main labels 17px; plain labels 15px. No extra content.
 
+## Tablet typography
+At viewport widths of 600px and above, keep the centered home layout and existing colors, fonts and controls. Scale home primary labels to 24–28px and plain labels to 22–26px using rem-based clamps. On the game screen, scale difficulty to 24–28px, timer to 30–36px, action/footer labels to 18–22px, and pause text/buttons to the corresponding larger sizes. Sizes remain responsive rather than targeting one tablet model; phone portrait typography stays unchanged.
+
+Tablet board digits follow the actual square board width at 9.4cqw (about 85% of cell height in font size), with unit line-height and no fixed 29px cap. Keypad digits follow their row width at 9cqw, capped at 3.5rem (56px at default text size); retain the row-width limit even with enlarged text to prevent digits overflowing narrow keys. Preserve square cells and enough space for every glyph and grid separator. The existing measured-height layout reserves the enlarged controls before sizing the board; allow wrapping/scrolling for enlarged text or very short viewports rather than clipping. Verify portrait and landscape tablets alongside phones and 200% text.
+
 ## Difficulty
+
 Back chevron, NUEVA PARTIDA title (~30px). Four full-width outlined buttons (~72px high), FÁCIL / MEDIO / DIFÍCIL / EXPERTO, with 1–4 ascending blue bars. ELIGE LA DIFICULTAD. Confirm replacement before generating. Show simple progress and retry only when needed.
 
 ## Game

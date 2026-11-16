@@ -24,6 +24,14 @@ The user explicitly authorized public repository creation, commit, push, GitHub 
 
 The live-check script clears this GitHub Pages origin's storage, caches and service workers in its browser profile. Run it only with a separate disposable Chrome debugging profile, sequentially with other browser scripts. Local receipts and downloads remain ignored under `node_modules/.tmp/`.
 
+## Tablet typography release (2026-11-16)
+
+- Changes are limited to responsive tablet typography in `src/styles.css` and the corresponding approved sizing in `DESIGN.md`; game mechanics and dependencies are unchanged.
+- `npm run check` passed again: lint, 258 tests, TypeScript, production build and scoped PWA artifact checks. All 13 prepared static files passed the publication privacy scan.
+- Production UI checks passed for phone/tablet layouts, orientation, safe areas and enlarged text. A focused nine-viewport check covered all four home actions, larger game typography, square cells and absence of clipping, including 200% text on portrait/landscape tablets.
+- `node scripts/check-pwa.mjs` passed again: cold offline recovery/undo/generation/completion and a second real build waiting during play, then activating once from idle home while preserving the complete saved document.
+- The existing six development-only dependency findings remain documented; physical iPhone acceptance remains pending.
+
 ## Pending physical device checks
 
 - Safari Add to Home Screen on a real iPhone.
